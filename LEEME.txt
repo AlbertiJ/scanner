@@ -1,0 +1,111 @@
+NETSCANNER — escáner de red en español (Windows y Linux)
+========================================================
+
+Herramienta de terminal en una sola pantalla: descubrir equipos en la red,
+escanear puertos, ver redes WiFi, capturar paquetes y consultar DNS. Reúne
+tres proyectos en uno.
+
+  >> Usá esto SOLO en tu propia red o donde tengas permiso. <<
+
+
+ARRANCAR (necesitás Python 3.8+ instalado, de python.org)
+---------------------------------------------------------
+
+Windows:
+    Lo más simple: bajá NetScanner.zip y los dos archivos del instalador
+    (Instalar-NetScanner.bat e Instalar-NetScanner.ps1) a la misma carpeta, y
+    hacé doble clic en Instalar-NetScanner.bat. Descomprime, instala en una
+    carpeta NetScanner en la raíz del disco del sistema, conserva tu entorno y
+    tus resultados, y arranca. Para actualizar: bajá el ZIP nuevo y volvé a
+    correrlo.
+    A mano: Extraer todo... (en el destino, borrá el NetScanner que Windows
+    agrega al final de la ruta) y doble clic en iniciar.bat
+    (para ARP y captura de paquetes: clic derecho > Ejecutar como administrador)
+
+Linux / macOS:
+    En una terminal, dentro de esta carpeta:
+        ./iniciar.sh
+    (para todas las funciones:  sudo ./iniciar.sh )
+    Si dice «Permission denied»:  chmod +x iniciar.sh
+    Si dice que no pudo crear el entorno (Debian, Ubuntu, Kali):
+        sudo apt install python3-venv python3-pip
+
+La primera vez arma solo el entorno e instala lo necesario (dejalo terminar,
+sin cortarlo con Ctrl+C). Después arranca directo. Con sudo, el entorno y la
+carpeta "resultados" quedan a nombre de tu usuario.
+
+Un entorno no se comparte entre Windows y Linux: usá una copia de la carpeta
+para cada sistema (en Linux, dentro de tu home: ~/NetScanner).
+
+WSL (Linux dentro de Windows): anda, pero WSL2 suele dar una red virtual, así
+que el descubrimiento ve esa red y no tu casa u oficina; tampoco ve las placas
+WiFi de Windows. El programa lo avisa. Para escanear tu red real, usá Windows
+o un Linux instalado en la máquina.
+
+
+ARRIBA, SIEMPRE A LA VISTA
+--------------------------
+  Redes WiFi      redes cercanas con señal, canal y seguridad. Elegí una, escribí
+                  la clave (si tiene) y tocá Conectar. Usa las herramientas del
+                  sistema (netsh en Windows, nmcli en Linux); Windows guarda el
+                  perfil de la red. Conectate solo a redes tuyas o públicas. Si
+                  una red abierta pide "iniciar sesión" en una página (portal
+                  cautivo), eso se hace en el navegador.
+  Interfaces      las placas de tu máquina con IPv4, IPv6 y MAC (Enter en una
+                  de ellas: carga su red en Descubrimiento)
+  Interfaz activa la placa por la que sale tu tráfico
+
+ABAJO, EN PESTAÑAS
+------------------
+  Descubrimiento  qué equipos están vivos en la red (IP, nombre, MAC, fabricante)
+                  (Enter en un equipo: escanea sus puertos)
+  Puertos         puertos abiertos de un equipo + banner + SO estimado (+ nmap)
+  Paquetes        captura en vivo (necesita administrador): TCP, UDP, ICMP, ARP
+                  e ICMP6/IPv6, con filtro por protocolo. Se puede PAUSAR y
+                  reanudar sin perder lo capturado.
+  Tráfico         conteo por protocolo, top de orígenes y los DNS que pasan por
+                  la red (nombre pedido, respuesta y cuántas veces). Solo se ven
+                  los DNS sin cifrar (puerto 53 y mDNS).
+  DNS             consultas A, AAAA, MX, NS, TXT, CNAME, SOA y PTR
+  Consola         comandos de red de un menú fijo (ping, traceroute, arp, dig...)
+
+ABAJO DEL TODO: botones para exportar el último resultado en JSON, CSV o TXT
+(se guardan en la carpeta "resultados").
+
+Teclas:  q salir · d cambiar tema · p pausar/reanudar la captura · Esc cancelar
+un escaneo · Tab entre pestañas. También funciona con el mouse.
+(La tecla p no responde mientras escribís en un campo de texto.)
+
+
+SI ALGO FALLA
+-------------
+  "No module named netscanner" o "No encuentro la carpeta netscanner":
+      corré iniciar.bat / iniciar.sh desde la carpeta que tenga A LA VEZ el
+      lanzador y la carpeta "netscanner". Si el ZIP quedó dentro de otra
+      carpeta, entrá a la carpeta NetScanner de adentro.
+      En PowerShell:  Expand-Archive .\NetScanner.zip -DestinationPath .\Prueba
+  "No module named netscanner" y la carpeta del programa se llama "NetScanner"
+  con mayúsculas: Windows no distingue mayúsculas, pero Python sí. El lanzador
+  nuevo lo corrige solo. A mano, en PowerShell:
+      Rename-Item NetScanner netscanner_tmp
+      Rename-Item netscanner_tmp netscanner
+  "No module named textual" (u otra librería):
+      la instalación se cortó. Volvé a correr el lanzador: retoma solo.
+
+
+QUÉ NECESITA PERMISOS
+---------------------
+Sin administrador:  interfaces, descubrimiento por ping, puertos, WiFi.
+Con administrador:  descubrimiento por ARP (trae MAC y fabricante) y captura
+                    de paquetes. En Windows la captura además necesita Npcap
+                    (npcap.com).
+
+El programa avisa cuando algo necesita permisos y sigue con el resto.
+
+
+OPCIONAL
+--------
+  nmap   escaneo profundo de puertos.  Linux: sudo apt install nmap  ·  Windows: nmap.org
+  Npcap  captura de paquetes en Windows.  npcap.com
+
+Créditos y licencias: ver README.md y CREDITOS.md.

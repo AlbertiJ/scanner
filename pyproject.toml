@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netscanner-es"
+version = "1.1.1"
+description = "Escáner de red unificado con interfaz de terminal (TUI), en español y multiplataforma."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+dependencies = ["textual>=0.60", "rich>=13", "scapy>=2.5", "psutil>=5.9", "python-nmap>=0.7", "dnspython>=2.0"]
+
+[project.scripts]
+netscanner = "netscanner.app:main"
+
+[tool.setuptools]
+packages = ["netscanner", "netscanner.nucleo", "netscanner.componentes"]
+
+[tool.setuptools.package-data]
+netscanner = ["datos/*.gz"]

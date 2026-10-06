@@ -1,0 +1,6 @@
+textual>=0.60
+rich>=13
+scapy>=2.5
+psutil>=5.9
+python-nmap>=0.7
+dnspython>=2.0

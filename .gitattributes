@@ -1,0 +1,7 @@
+# Los lanzadores dependen de sus saltos de línea: .bat y .ps1 con CRLF, .sh con LF.
+# "-text" le dice a git que nunca los convierta (ni al guardar ni al bajar).
+*.bat -text
+*.ps1 -text
+*.sh  -text
+# Datos binarios
+*.gz  binary
