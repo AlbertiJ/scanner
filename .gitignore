@@ -5,3 +5,11 @@ __pycache__/
 resultados/
 build/
 *.egg-info/
+
+# Secretos y datos locales (no subir nunca)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.session
