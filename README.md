@@ -8,6 +8,39 @@ Unifica en una sola herramienta de Python las funciones de tres proyectos de esc
 
 ---
 
+## Capturas
+
+Así se ve el programa. Los datos de las capturas son de ejemplo (equipos, redes y paquetes inventados), no de una red real.
+
+![Descubrimiento: equipos de la red con su MAC y fabricante](docs/capturas/01-descubrimiento.png)
+
+<details>
+<summary>Ver las demás pestañas</summary>
+
+**Puertos:** puertos abiertos de un equipo, con banner y sistema operativo probable.
+
+![Puertos abiertos de un equipo](docs/capturas/02-puertos.png)
+
+**Paquetes:** captura en vivo, con filtro por protocolo y selector de placa.
+
+![Captura de paquetes en vivo](docs/capturas/03-paquetes.png)
+
+**Tráfico:** conteo por protocolo, top de orígenes y DNS que pasan sin cifrar.
+
+![Tráfico: protocolos, orígenes y DNS](docs/capturas/04-trafico.png)
+
+**DNS:** registros A, AAAA, MX, NS, TXT, CNAME, SOA y PTR.
+
+![Consulta DNS](docs/capturas/05-dns.png)
+
+**Consola:** menú fijo de comandos de red, sin shell abierta.
+
+![Consola de comandos de red](docs/capturas/06-consola.png)
+
+</details>
+
+---
+
 ## Qué hace
 
 Es un **panel (dashboard) de una sola pantalla**, como el netscanner original.

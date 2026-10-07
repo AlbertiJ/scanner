@@ -5,3 +5,4 @@
 *.sh  -text
 # Datos binarios
 *.gz  binary
+*.png binary
